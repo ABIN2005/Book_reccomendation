@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Recommendations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Book recommendation System</h1>
+        <form method="POST" action="/recommend">
+            <input type="text" name="genre" placeholder="Enter genre (e.g., Dystopian)" required>
+            <button type="submit">Recommend</button>
+        </form>
+        <div class="recommendations">
+            <h2>Recommended Books:</h2>
+            <ul id="recommendation-list">
+                {% if recommendations.empty %}
+                    <li>No recommendations found for the specified genre.</li>
+                {% else %}
+                    {% for book in recommendations.iterrows() %}
+                        <li>
+                            <strong>{{ book[1]['title'] }}</strong> by {{ book[1]['author'] }}: {{ book[1]['description'] }}
+                        </li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

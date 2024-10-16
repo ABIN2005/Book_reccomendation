@@ -1,0 +1,98 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ff4747, #222); /* Gradient background of red and black */
+    color: #fff; /* White text for contrast */
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Main Container */
+.container {
+    background-color: rgba(30, 30, 30, 0.9); /* Dark semi-transparent background for container */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    max-width: 600px;
+    text-align: center;
+    width: 90%;
+}
+
+/* Header Title */
+h1 {
+    font-size: 2.5rem;
+    color: #ff4747; /* Bright red for title */
+    margin-bottom: 20px;
+}
+
+/* Input Field */
+input[type="text"] {
+    width: 80%;
+    padding: 12px;
+    font-size: 1.1rem;
+    border: 2px solid #28a745; /* Green border */
+    border-radius: 30px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    outline: none;
+    background-color: #fff; /* White background for input */
+    color: #333; /* Dark text color for readability */
+}
+
+input[type="text"]:focus {
+    border-color: #ffcc66; /* Lighter yellow on focus */
+    box-shadow: 0 0 8px rgba(255, 204, 102, 0.5);
+}
+
+/* Submit Button */
+button {
+    background-color: #28a745; /* Green button */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* Recommendation List */
+.recommendations {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.recommendations h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #ff4747; /* Bright red for subheading */
+}
+
+.recommendations ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.recommendations li {
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white for list items */
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #ff4747; /* Red border for list items */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.recommendations li:hover {
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.2); /* Lighter white on hover */
+}
