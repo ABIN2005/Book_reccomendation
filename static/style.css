@@ -1,98 +1,60 @@
-/* Global Styles */
-body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #ff4747, #222); /* Gradient background of red and black */
-    color: #fff; /* White text for contrast */
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+:root{
+    --bg:#0f1724;
+    --card:#0b1220;
+    --muted:#9aa4b2;
+    --accent:#6c5ce7;
+    --accent-2:#00b894;
+    --surface:rgba(255,255,255,0.04);
+    --glass:rgba(255,255,255,0.03);
 }
 
-/* Main Container */
-.container {
-    background-color: rgba(30, 30, 30, 0.9); /* Dark semi-transparent background for container */
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-    max-width: 600px;
-    text-align: center;
-    width: 90%;
+/* Reset + layout */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+    margin:0;
+    font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    background: linear-gradient(180deg,var(--bg),#071023);
+    color:#e6eef6;
+    -webkit-font-smoothing:antialiased;
 }
 
-/* Header Title */
-h1 {
-    font-size: 2.5rem;
-    color: #ff4747; /* Bright red for title */
-    margin-bottom: 20px;
+.container{
+    max-width:900px;
+    margin:48px auto;
+    padding:28px;
+    background: linear-gradient(180deg,var(--card),#08121a99);
+    border-radius:12px;
+    box-shadow:0 10px 30px rgba(2,6,23,0.6);
 }
 
-/* Input Field */
-input[type="text"] {
-    width: 80%;
-    padding: 12px;
-    font-size: 1.1rem;
-    border: 2px solid #28a745; /* Green border */
-    border-radius: 30px;
-    margin-bottom: 20px;
-    transition: all 0.3s ease;
-    outline: none;
-    background-color: #fff; /* White background for input */
-    color: #333; /* Dark text color for readability */
-}
+.hero h1{margin:0;font-size:1.8rem;color:var(--accent)}
+.hero .lead{margin-top:6px;color:var(--muted)}
 
-input[type="text"]:focus {
-    border-color: #ffcc66; /* Lighter yellow on focus */
-    box-shadow: 0 0 8px rgba(255, 204, 102, 0.5);
-}
+.search{margin-top:18px;display:flex;align-items:center;justify-content:center}
+#recommend-form{display:flex;gap:12px;width:100%;max-width:760px}
+#genre-input{flex:1;padding:12px 16px;border-radius:10px;border:1px solid var(--surface);background:transparent;color:inherit;font-size:1rem}
+#genre-input:focus{outline:2px solid rgba(108,92,231,0.18);box-shadow:0 6px 18px rgba(108,92,231,0.06)}
+#recommend-btn{background:linear-gradient(90deg,var(--accent),#8e7bff);border:none;color:white;padding:12px 18px;border-radius:10px;cursor:pointer;font-weight:600}
+#recommend-btn[disabled]{opacity:0.6;cursor:wait}
 
-/* Submit Button */
-button {
-    background-color: #28a745; /* Green button */
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 30px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
+.recommendations{margin-top:24px}
+.recommendations h2{margin:0 0 12px 0;color:var(--accent)}
+.status{padding:10px 12px;border-radius:8px;background:var(--glass);color:var(--muted);margin-bottom:12px}
+.hidden{display:none}
 
-button:hover {
-    background-color: #218838; /* Darker green on hover */
-}
+#recommendation-list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+#recommendation-list li{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.03)}
+#recommendation-list li .by{display:block;color:var(--muted);font-size:0.9rem;margin-top:6px}
+#recommendation-list li .desc{margin:8px 0 0 0;color:var(--muted);font-size:0.95rem}
+#recommendation-list li:hover{transform:translateY(-6px);transition:transform .18s ease}
 
-/* Recommendation List */
-.recommendations {
-    margin-top: 20px;
-    text-align: left;
-}
+.empty{color:var(--muted);padding:18px;border-radius:10px;background:transparent}
 
-.recommendations h2 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-    color: #ff4747; /* Bright red for subheading */
-}
+/* Accessibility helpers */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-.recommendations ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.recommendations li {
-    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white for list items */
-    margin: 10px 0;
-    padding: 15px;
-    border-radius: 10px;
-    border: 1px solid #ff4747; /* Red border for list items */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-
-.recommendations li:hover {
-    transform: translateY(-5px);
-    background-color: rgba(255, 255, 255, 0.2); /* Lighter white on hover */
+@media (max-width:520px){
+    .container{margin:20px;padding:18px}
+    .hero h1{font-size:1.4rem}
 }

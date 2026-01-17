@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 import pandas as pd
 
 # Initialize Flask app
@@ -73,9 +73,33 @@ def index():
 
 @app.route('/recommend', methods=['POST'])
 def recommend():
-    genre = request.form['genre']
-    recommendations = recommend_books_by_genre(genre)
+    # Traditional form submit (non-JS fallback)
+    genre = request.form.get('genre', '').strip()
+    if not genre:
+        recommendations = pd.DataFrame(columns=df.columns)
+    else:
+        recommendations = recommend_books_by_genre(genre)
     return render_template('index.html', genre=genre, recommendations=recommendations)
+
+
+@app.route('/api/recommend', methods=['POST'])
+def api_recommend():
+    """Return JSON recommendations for the provided genre.
+
+    Accepts JSON body {"genre": "..."} or form data. Responds with:
+    {"status": "ok", "recommendations": [{title,author,description}, ...]}
+    """
+    try:
+        data = request.get_json(silent=True) or request.form or {}
+        genre = (data.get('genre') or '').strip()
+        if not genre:
+            return jsonify({'status': 'error', 'message': 'Missing genre'}), 400
+
+        recs_df = recommend_books_by_genre(genre)
+        recs = recs_df[['title', 'author', 'description']].to_dict(orient='records')
+        return jsonify({'status': 'ok', 'recommendations': recs}), 200
+    except Exception as exc:
+        return jsonify({'status': 'error', 'message': str(exc)}), 500
 
 # Run the Flask app
 if __name__ == '__main__':
